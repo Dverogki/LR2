@@ -1,0 +1,70 @@
+@startuml
+class Character {
+  -self
+  -name
+  -char_type
+  -hp
+  -mp
+  -strength
+  -agility
+  -intellect
+  -damage
+  -take_damage(self, damage)
+  -heal(self, amount)
+  -restore_mp(self, amount)
+  -attack(self, target)
+}
+
+Character ..|> Warrior
+class Warrior {
+  -init(self, name)
+  -war_attack(self, target)
+}
+
+Character ..|> Mage
+class Mage {
+  -init(self, name)
+  -magic_attack(self, target)
+  -heal_spell(self, target)
+}
+
+Character ..|> Archer
+class Archer {
+  -init(self, name)
+  -ranged_attack(self, target)
+}
+Character ..|> Healer
+class Healer {
+  -init(self, name)
+  -heal(self, target)
+  restore_mana(self, target, amount)
+}
+
+class Enemy {
+  -self
+  -name
+  -enemy_type
+  -hp
+  -mp
+  -strength
+  -damage
+  -special
+  -take_damage(self, damage)
+  -attack(self, target)
+}
+
+Enemy ..|> Goblin
+class Goblin {
+  -init(self, name, strength_level=1)
+}
+
+Enemy ..|> DarkMage
+class DarkMage {
+  -init(self, name)
+}
+
+Enemy ..|> Dragon
+class Dragon {
+  -init(self, name)
+}
+@enduml

@@ -1,0 +1,98 @@
+@startuml
+actor Player as pl
+
+package Menu {
+  usecase "Новая игра" as men1
+  usecase "Загрузить сохранение" as men2
+  usecase "Посмотреть статистику" as men3
+  usecase "Выход" as men4
+  pl --> men1
+  pl --> men2
+  pl --> men3
+  pl --> men4
+}
+  usecase "Назови героя" as name
+  men1 --> name
+  usecase "Создание команды" as name_t
+  name --> name_t
+  name_t --> Team
+  package Team {
+    actor "Персонаж 1" as ch_1
+    actor "Персонаж 2" as ch_2
+    actor "Персонаж 3" as ch_3
+    actor "Персонаж 4" as ch_4
+    actor "Персонаж 5" as ch_5
+    actor "Персонаж 6" as ch_6
+    usecase "Кол-во персонажей в команде 4-6" as kol
+    kol --> ch_1
+    kol --> ch_2
+    kol --> ch_3
+    kol --> ch_4
+    kol ..> ch_5
+    kol ..> ch_6
+    usecase "Выбор класса персонажа" as class
+    ch_1 --> class
+    ch_2 --> class
+    ch_3 --> class
+    ch_4 --> class
+    ch_5 --> class
+    ch_6 --> class
+    usecase "Выбор имени персонажа" as name_ch
+    class --> name_ch
+  }
+
+usecase "Битва: босс ветки" as boss
+
+usecase "История: пролог" as ist_0
+Team --> ist_0
+usecase "История: ветка 1" as ist_1
+ist_0 --> ist_1
+
+usecase "История:ветка 2" as ist_2
+ist_0 --> ist_2
+
+usecase "История: ветка 3" as ist_3
+ist_0 --> ist_3
+
+usecase "История: ветка 1 - глава 1" as ist_1.1
+usecase "Битва: ветка 1 - монстр 1" as att_1.1
+ist_1 --> ist_1.1
+ist_1.1 --> att_1.1
+usecase "История: ветка 1 - глава 2" as ist_1.2
+usecase "Битва: ветка 1 - монстр 2" as att_1.2
+att_1.1 --> ist_1.2
+ist_1.2 --> att_1.2
+usecase "История: ветка 1 - глава 3" as ist_1.3
+usecase "Битва: ветка 1 - монстр 3" as att_1.3
+att_1.2 --> ist_1.3
+ist_1.3 --> att_1.3
+usecase "Битва: ветка 1 - босс ветки" as boss_1
+att_1.3 --> boss_1
+
+usecase "История: ветка 2 - глава 1" as ist_2.1
+usecase "Битва: ветка 2 - монстр 1" as att_2.1
+ist_2 --> ist_2.1
+ist_2.1 --> att_2.1
+usecase "История: ветка 2 - глава 2" as ist_2.2
+usecase "Битва: ветка 2 - монстр 2" as att_2.2
+att_2.1 --> ist_2.2
+ist_2.2 --> att_2.2
+usecase "Битва: ветка 2 - босс игры" as boss_2
+att_2.2 --> boss_2
+
+usecase "История: ветка 3 - глава 1" as ist_3.1
+usecase "Битва: ветка 3 - монстр 1" as att_3.1
+ist_3 --> ist_3.1
+ist_3.1 --> att_3.1
+usecase "История: ветка 3 - глава 2" as ist_3.2
+usecase "Битва: ветка 3 - монстр 2" as att_3.2
+att_3.1 --> ist_3.2
+ist_3.2 --> att_3.2
+usecase "Битва: ветка 3 - босс ветки" as boss_3
+att_3.2 --> boss_3
+
+usecase "Конец!" as ex
+boss_1 --> ex
+boss_2 --> ex
+boss_3 --> ex
+@enduml

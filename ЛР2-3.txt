@@ -1,0 +1,38 @@
+@startuml
+
+skinparam componentStyle rectangle
+
+
+[choice] --> [start_new_game]
+[choice] --> [load_game]
+[choice] --> [game_state.show_statistics()]
+note left of [choice] : Выбор в главном меню
+note right of [start_new_game] : Начать новую игру
+note bottom of [load_game] : Загрузить сохранение
+note bottom of [game_state.show_statistics()] : Посмотреть статистику
+
+[start_new_game] --> [create_team]
+note bottom of [create_team] : Создание команды
+[start_new_game] --> [story.start_story]
+note bottom of [story.start_story] : Начало истории
+[start_new_game] --> [story.show_branch_choice]
+note bottom of [story.show_branch_choice] : Выбор сюжетной ветки
+[start_new_game] --> [story.play_chapter]
+note bottom of [story.play_chapter] : Выбор сюжетной ветки
+[start_new_game] --> [battle]
+note bottom of [battle] : Сражение
+
+[battle] --> [char.war_attack]
+note bottom of [char.war_attack] : Атака воина
+[battle] --> [char.magic_attack]
+note bottom of [char.magic_attack] : Атака мага
+[battle] --> [char.heal_spell]
+note bottom of [char.heal_spell] : Лечение от мага
+[battle] --> [char.ranged_attack]
+note bottom of [char.ranged_attack] : Атака лучника
+[battle] --> [char.heal]
+note bottom of [char.heal] : Лечение от целителя
+[battle] --> [char.restore_mana]
+note bottom of [char.restore_mana] : Востановление маны от целителя
+
+@enduml
